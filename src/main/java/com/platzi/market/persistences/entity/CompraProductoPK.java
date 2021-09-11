@@ -21,6 +21,7 @@ public class CompraProductoPK {
     @Column(name = "id_producto")
     private Producto producto;
 
+    
     public Compra getCompra() {
         return compra;
     }
