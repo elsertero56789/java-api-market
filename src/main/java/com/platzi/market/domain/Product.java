@@ -10,21 +10,21 @@ package com.platzi.market.domain;
  * @author Fabrizio-PC
  */
 public class Product {
-    private int ProductId;
+    private int productId;
     private String name;
     private int categoryId;
     private double price;
-    private int Stock;
+    private int stock;
     private boolean active;
     
     private Category category;
 
     public int getProductId() {
-        return ProductId;
+        return productId;
     }
 
     public void setProductId(int ProductId) {
-        this.ProductId = ProductId;
+        this.productId = ProductId;
     }
 
     public String getName() {
@@ -52,11 +52,11 @@ public class Product {
     }
 
     public int getStock() {
-        return Stock;
+        return stock;
     }
 
     public void setStock(int Stock) {
-        this.Stock = Stock;
+        this.stock = Stock;
     }
 
     public boolean isActive() {
