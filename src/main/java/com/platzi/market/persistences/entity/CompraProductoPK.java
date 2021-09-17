@@ -6,6 +6,7 @@
 package com.platzi.market.persistences.entity;
 
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
@@ -14,29 +15,29 @@ import javax.persistence.Embeddable;
  * @author Fabrizio-PC
  */
 @Embeddable
-public class CompraProductoPK {
+public class CompraProductoPK implements Serializable{
     @Column(name = "id_compra")
-    private Compra compra;
+    private Integer compra;
     
     @Column(name = "id_producto")
-    private Producto producto;
+    private Integer producto;
 
-    
-    public Compra getCompra() {
+    public Integer getCompra() {
         return compra;
     }
 
-    public void setCompra(Compra compra) {
+    public void setCompra(Integer compra) {
         this.compra = compra;
     }
 
-    public Producto getProducto() {
+    public Integer getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto) {
+    public void setProducto(Integer producto) {
         this.producto = producto;
     }
+
     
     
 }

@@ -5,6 +5,7 @@
  */
 package com.platzi.market.persistences.crud;
 
+import com.platzi.market.domain.Product;
 import com.platzi.market.persistences.entity.Producto;
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +22,5 @@ public interface ProductoCrudRepository extends CrudRepository<Producto, Integer
     List<Producto> findByIdCategoria(int idCategoria);
     
     Optional<List<Producto>> findByCantidadStockLessThanAndEstado (int cantidadStock, boolean estado);
+    List<Producto> findByIdCategoriaOrderByNombreAsc(int idCategoria);
 }
