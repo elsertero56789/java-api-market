@@ -10,6 +10,8 @@ import com.platzi.market.domain.services.ProductService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,23 +31,30 @@ public class ProductController {
     private ProductService productService;
     
     @GetMapping("/all")
-    public List<Product> getAll(){
-        return productService.getAll();
+    public ResponseEntity<List<Product>> getAll(){
+        return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
     @GetMapping("/{productId}")
-    public Optional<Product> getProduct(@PathVariable int productId){
-        return productService.getProduct(productId);
+    public ResponseEntity<Product> getProduct(@PathVariable int productId){
+        return productService.getProduct(productId)
+                .map(prod -> new ResponseEntity<>(prod, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @PostMapping("/save")
-    public Product save( @RequestBody Product product){
-        return productService.save(product);
+    public ResponseEntity<Product> save( @RequestBody Product product){
+        return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
     @GetMapping("/category/{categoryId}")
-    public Optional<List<Product>> getByCategory( @PathVariable int categoryId){
-        return productService.getByCategory(categoryId);
+    public ResponseEntity<List<Product>> getByCategory( @PathVariable int categoryId){
+        return productService.getByCategory(categoryId).map(prods -> new ResponseEntity<>(prods, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @DeleteMapping("delete/{id}")
-    public boolean Delete( @PathVariable("id") int productId){
-            return productService.Delete(productId);
+    public ResponseEntity Delete( @PathVariable("id") int productId){
+            if(productService.Delete(productId)){
+                return new ResponseEntity(HttpStatus.OK);
+            }else{
+                return new ResponseEntity(HttpStatus.NOT_FOUND);
+            }
     }
 }
