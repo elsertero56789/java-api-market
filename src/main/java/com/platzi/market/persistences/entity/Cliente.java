@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Table(name = "clientes")
 public class Cliente {
     @Id
-    private Integer id;
+    private String id;
     
     @Column(name="nombre")
     private String nombre;
@@ -28,7 +28,7 @@ public class Cliente {
     @Column(name = "apellidos")
     private String apellidos;
     
-    private Integer celular;
+    private Long celular;
     
     private String direccion;
     
@@ -39,11 +39,11 @@ public class Cliente {
     private List<Compra> compras;
 
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -63,11 +63,11 @@ public class Cliente {
         this.apellidos = apellidos;
     }
 
-    public Integer getCelular() {
+    public Long getCelular() {
         return celular;
     }
 
-    public void setCelular(Integer celular) {
+    public void setCelular(Long celular) {
         this.celular = celular;
     }
 

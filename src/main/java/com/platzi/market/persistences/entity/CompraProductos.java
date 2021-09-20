@@ -35,7 +35,7 @@ public class CompraProductos implements Serializable {
     private Boolean estado;
 
     @ManyToOne
-    @MapsId("idCompra")
+    @MapsId("compra")
     @JoinColumn(name = "id_compra", insertable = false, updatable = false)
     public Compra compra;
     
